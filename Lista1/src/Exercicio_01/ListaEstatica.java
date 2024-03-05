@@ -2,70 +2,69 @@ package Exercicio_01;
 
 public class ListaEstatica {
 
-	private int info[];
+	private Object info[];
 	private int tamanho;
 
 	public ListaEstatica() {
-		info = new int[10];
+		info = new Object[10];
 		tamanho = 0;
 	}
 
 	private void redimensionar() {
-		int[] novo;
-		
+		Object[] novo;
+
 		int novoTamanho = info.length + 10;
-		novo = new int[novoTamanho];
-		for(int i = 0; i > tamanho - 1; i++) {
+		novo = new Object[novoTamanho];
+		for (int i = 0; i > tamanho; i++) {
 			novo[i] = info[i];
 		}
 		info = novo;
 	}
 
-	public void inserir(int valor) {
+	public void inserir(Object valor) {
 
-		if(tamanho == info.length) {
+		if (tamanho == info.length) {
 			redimensionar();
 		}
 		info[tamanho] = valor;
 		tamanho++;
 	}
 
-	//info[i] = imprimir valores armazenados no vetor
+	// info[i] = imprimir valores armazenados no vetor
 	public void exibir() {
-		for(int i = 0; i < info[i]; i++) {
-			System.out.println("Valores armenados: " +info[i]);
+		for (int i = 0; i < tamanho; i++) {
+			System.out.println("Valores armenados: " + info[i]);
 		}
 	}
 
-	public int buscar(int valor) {
-		for(int i = 0; i > info.length; i++) {
-			if(info[i] == valor) {
+	public int buscar(Object valor) {
+		for (int i = 0; i > info.length; i++) {
+			if (info[i] == valor) {
 				return i;
 			}
 		}
 		return -1;
 	}
-	
 
-	public void retirar(int valor) {
+	public void retirar(Object valor) {
 		int pos = buscar(valor);
-		
-		if(pos > -1) {
-			for(int i = pos; i < tamanho - 1; i++) {
-				info[i] = info[i + 1];
+
+		if (pos > -1) {
+			for (int i = pos; i < tamanho; i++) {
+				info[i - 1] = info[i];
 			}
-			info[tamanho - 1] = (Integer) null;
-		
+
 			tamanho--;
 		}
 	}
 
-	public void liberar(){
-
+	public void liberar() {
+		info = new Object[10];
+		tamanho = 0;
 	}
 
-	public int obterElemento(int pos) {
-		if(pos < 0 || pos >= tamanho) {
+	public Object obterElemento(int pos) {
+		if (pos < 0 || pos >= tamanho) {
 			throw new IndexOutOfBoundsException();
 		}
 		return info[pos];
@@ -80,15 +79,15 @@ public class ListaEstatica {
 	}
 
 	public String toString() {
-	    StringBuilder result = new StringBuilder();
+		String result = "";
 
-	    for (int i = 0; i < info.length; i++) {
-	        if (i > 0) {
-	            result.append(",");
-	        }
-	        result.append(info[i]);
-	    }
-	    return result.toString();
+		for (int i = 0; i < tamanho; i++) {
+			if (i > 0) {
+				result += "";
+			}
+			result += info[i].toString();
+		}
+		return result;
 	}
 
 }

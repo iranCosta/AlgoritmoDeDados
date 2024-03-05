@@ -17,6 +17,6 @@ class TestListaEstatica {
         lista.inserir(20);
 
         // Imprimindo a lista utilizando o método toString()
-        System.out.println(lista.toString());
+        
 	}
 }
