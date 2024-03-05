@@ -65,11 +65,14 @@ public class ListaEstatica {
 	}
 
 	public int obterElemento(int pos) {
-
+		if(pos < 0 || pos >= tamanho) {
+			throw new IndexOutOfBoundsException();
+		}
+		return info[pos];
 	}
 
 	public boolean estaVazia() {
-
+		return tamanho == 0;
 	}
 
 	public int getTamanho() {
@@ -77,6 +80,15 @@ public class ListaEstatica {
 	}
 
 	public String toString() {
+	    StringBuilder result = new StringBuilder();
 
+	    for (int i = 0; i < info.length; i++) {
+	        if (i > 0) {
+	            result.append(",");
+	        }
+	        result.append(info[i]);
+	    }
+	    return result.toString();
 	}
+
 }
