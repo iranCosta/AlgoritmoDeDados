@@ -1,11 +1,11 @@
-package Exercicio_01;
+package exercicio_02;
 
-public class ListaEstatica {
+public class ListaEstaticaGenerica<T>{
 
-	private Object info[];
+	private Object[] info;
 	private int tamanho;
-
-	public ListaEstatica() {
+	
+	public ListaEstaticaGenerica() {
 		info = new Object[10];
 		tamanho = 0;
 	}
@@ -21,7 +21,7 @@ public class ListaEstatica {
 		info = novo;
 	}
 
-	public void inserir(Object valor) {
+	public void inserir(T valor) {
 
 		if (tamanho == info.length) {
 			redimensionar();
@@ -37,7 +37,7 @@ public class ListaEstatica {
 		}
 	}
 
-	public int buscar(Object valor) {
+	public int buscar(T valor) {
 		for (int i = 0; i > info.length; i++) {
 			if (info[i] == valor) {
 				return i;
@@ -46,7 +46,7 @@ public class ListaEstatica {
 		return -1;
 	}
 
-	public void retirar(Object valor) {
+	public void retirar(T valor) {
 		int pos = buscar(valor);
 
 		if (pos > -1) {
@@ -63,11 +63,11 @@ public class ListaEstatica {
 		tamanho = 0;
 	}
 
-	public Object obterElemento(int pos) {
+	public T obterElemento(int pos) {
 		if (pos < 0 || pos >= tamanho) {
 			throw new IndexOutOfBoundsException();
 		}
-		return info[pos];
+		return (T)info[pos];
 	}
 
 	public boolean estaVazia() {
@@ -84,11 +84,15 @@ public class ListaEstatica {
 
 		for (int i = 0; i < tamanho; i++) {
 			if (i > 0) {
-				result += "";
+				result += ",";
 			}
 			result += info[i].toString();
 		}
 		return result;
 	}
 
+	//faze esse
+	public void inverter() {
+
+	}
 }
