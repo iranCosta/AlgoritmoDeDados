@@ -93,6 +93,31 @@ public class ListaEstaticaGenerica<T>{
 
 	//faze esse
 	public void inverter() {
+	    for (int i = 0; i < tamanho / 2; i++) {
+	        // Troca os elementos nas posições i e tamanho - 1 - i
+	        Object temp = info[i];
+	        info[i] = info[tamanho - 1 - i];
+	        info[tamanho - 1 - i] = temp;
+	    
+	        
+	    }
+	}
+	
+	public static void main(String[] args) {
+	    ListaEstaticaGenerica<Integer> lista = new ListaEstaticaGenerica<>();
 
+	    lista.inserir(1);
+	    lista.inserir(2);
+	    lista.inserir(3);
+	    lista.inserir(4);
+	    lista.inserir(5);
+
+	    System.out.println("Lista antes da inversão:");
+	    lista.exibir();
+
+	    lista.inverter();
+
+	    System.out.println("Lista após a inversão:");
+	    lista.exibir();
 	}
 }

@@ -16,9 +16,11 @@ class TesteListaEstaticaGenerica {
 		lista.inserir(20);
 		lista.inserir(25);
 
-		lista.exibir();
+		//lista.exibir();
 
 		lista.inverter();
+		
+		//lista.toString();
 	}
 
 }
