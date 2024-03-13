@@ -1,10 +1,10 @@
 package exercicio_02;
 
-public class ListaEstaticaGenerica<T>{
+public class ListaEstaticaGenerica<T> {
 
 	private Object[] info;
 	private int tamanho;
-	
+
 	public ListaEstaticaGenerica() {
 		info = new Object[10];
 		tamanho = 0;
@@ -55,6 +55,7 @@ public class ListaEstaticaGenerica<T>{
 			}
 
 			tamanho--;
+			info[tamanho] = null;
 		}
 	}
 
@@ -67,7 +68,7 @@ public class ListaEstaticaGenerica<T>{
 		if (pos < 0 || pos >= tamanho) {
 			throw new IndexOutOfBoundsException();
 		}
-		return (T)info[pos];
+		return (T) info[pos];
 	}
 
 	public boolean estaVazia() {
@@ -86,38 +87,55 @@ public class ListaEstaticaGenerica<T>{
 			if (i > 0) {
 				result += ",";
 			}
-			result += info[i].toString();
+			result += info[i];
 		}
 		return result;
 	}
 
-	//faze esse
 	public void inverter() {
-	    for (int i = 0; i < tamanho / 2; i++) {
-	        // Troca os elementos nas posições i e tamanho - 1 - i
-	        Object temp = info[i];
-	        info[i] = info[tamanho - 1 - i];
-	        info[tamanho - 1 - i] = temp;
-	    
-	        
-	    }
+		int esquerda = 0;
+		int direita = tamanho - 1;
+
+		int qtdeTrocas = tamanho / 2;
+
+		Object backup;
+
+		while (qtdeTrocas > 0) {
+			backup = info[esquerda];
+			info[esquerda] = info[direita];
+			info[direita] = backup;
+
+			esquerda++;
+			direita--;
+
+			qtdeTrocas--;
+		}
 	}
-	
+
+	/*
+	 * public void inverter() { for (int i = 0; i < tamanho / 2; i++) { // Troca os
+	 * elementos nas posições i e tamanho - 1 - i Object temp = info[i]; info[i] =
+	 * info[tamanho - 1 - i]; info[tamanho - 1 - i] = temp;
+	 * 
+	 * 
+	 * } }
+	 */
+
 	public static void main(String[] args) {
-	    ListaEstaticaGenerica<Integer> lista = new ListaEstaticaGenerica<>();
+		ListaEstaticaGenerica<Integer> lista = new ListaEstaticaGenerica<>();
 
-	    lista.inserir(1);
-	    lista.inserir(2);
-	    lista.inserir(3);
-	    lista.inserir(4);
-	    lista.inserir(5);
+		lista.inserir(1);
+		lista.inserir(2);
+		lista.inserir(3);
+		lista.inserir(4);
+		lista.inserir(5);
 
-	    System.out.println("Lista antes da inversão:");
-	    lista.exibir();
+		System.out.println("Lista antes da inversão:");
+		lista.exibir();
 
-	    lista.inverter();
+		lista.inverter();
 
-	    System.out.println("Lista após a inversão:");
-	    lista.exibir();
+		System.out.println("Lista após a inversão:");
+		lista.exibir();
 	}
 }
