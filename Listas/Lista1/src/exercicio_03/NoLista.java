@@ -3,8 +3,8 @@ package exercicio_03;
 public class NoLista<T> {
 
 	private T info;
-	
-	private NoLista proximo;
+
+	private NoLista<T> proximo;
 
 	public T getInfo() {
 		return info;
@@ -14,13 +14,12 @@ public class NoLista<T> {
 		this.info = info;
 	}
 
-	public NoLista getProximo() {
+	public NoLista<T> getProximo() {
 		return proximo;
 	}
 
-	public void setProximo(NoLista proximo) {
+	public void setProximo(NoLista<T> proximo) {
 		this.proximo = proximo;
 	}
-	
-	
+
 }

@@ -2,7 +2,7 @@ package exercicio_03;
 
 public class ListaEncadeada<T> {
 
-	private NoLista primeiro;
+	private NoLista<T> primeiro;
 
 	// a
 	public ListaEncadeada() {
@@ -11,12 +11,12 @@ public class ListaEncadeada<T> {
 	}
 
 	// b
-	public NoLista getPrimeiro() {
+	public NoLista<T> getPrimeiro() {
 		return primeiro;
 	}
 
 	public void inserir(T info) {
-		NoLista novo = new NoLista();
+		NoLista<T> novo = new NoLista<T>();
 		novo.setInfo(info);
 		novo.setProximo(primeiro);
 		this.primeiro = novo;
@@ -28,13 +28,12 @@ public class ListaEncadeada<T> {
 		if (primeiro == null) {
 			return true;
 		}
-
 		return false;
 	}
 
 	// e
-	public NoLista buscar(T info) {
-		NoLista p = primeiro;
+	public NoLista<T> buscar(T info) {
+		NoLista<T> p = primeiro;
 
 		while (p != null) {
 			if (p.getInfo() == info) {
@@ -48,8 +47,8 @@ public class ListaEncadeada<T> {
 
 	// f
 	public void retirar(T info) {
-		NoLista anterior = null;
-		NoLista p = primeiro;
+		NoLista<T> anterior = null;
+		NoLista<T> p = primeiro;
 
 		while (p != null && p.getInfo() != info) {
 			anterior = p;
@@ -67,16 +66,55 @@ public class ListaEncadeada<T> {
 
 	// g
 	public int obterComprimento() {
+		int compri = 0;
+		NoLista<T> p = primeiro;
 
+		while (p != null) {
+			compri++;
+			p = p.getProximo();
+		}
+		return compri;
 	}
 
 	// h
-	public NoLista obterNo() {
+	public NoLista<T> obterNo(int idx) {
+		if (idx < 0 || idx >= obterComprimento()) {
+			throw new IndexOutOfBoundsException();
+		}
 
+		NoLista<T> p = primeiro;
+		for (int i = 0; i < idx; i++) {
+			p = p.getProximo();
+		}
+		return p;
 	}
 
 	// i
 	public String toString() {
+		String result = "[";
+		NoLista<T> p = primeiro;
+
+		while (p != null) {
+			result += p.getInfo().toString(); // Concatena o valor do nó à string resultante
+			if (p.getProximo() != null) {
+				result += ", "; // Adiciona uma vírgula e um espaço se não for o último elemento
+			}
+			p = p.getProximo();
+		}
+
+		result += "]";
+		return result;
+	}
+
+	public static void main(String[] args) {
+		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
+
+		lista.estaVazia();
+
+		lista.inserir(5);
+		lista.estaVazia();
+
+		lista.toString();
 
 	}
 
