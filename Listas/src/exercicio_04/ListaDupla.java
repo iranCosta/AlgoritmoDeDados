@@ -1,5 +1,7 @@
 package exercicio_04;
 
+import exercicio_03.NoLista;
+
 public class ListaDupla<T> {
 
 	private NoListaDupla<T> primeiro;
@@ -54,6 +56,28 @@ public class ListaDupla<T> {
 		}
 
 	}
+
+	// outra opção
+//	public void exibirOrdemInversa() {
+//		NoLista<T> p = obterUltimo();
+//		
+//		while (p != null) {
+//			System.out.println(p.getInfo().toString());
+//			p = p.getAnterior();
+//		}
+//	}
+
+//	private NoListaDupla<T> obterUltimo() {
+//		NoListaDupla<T> ultimo = primeiro;
+//		
+//		NoListaDupla<T> p = primeiro;
+//		
+//		while(p != null) {
+//			ultimo = p;
+//		}
+//		
+//		return ultimo;
+//	}
 
 	public void exibirOrdemInversa() {
 		NoListaDupla<T> p = getPrimeiro();
