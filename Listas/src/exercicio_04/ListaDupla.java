@@ -1,7 +1,5 @@
 package exercicio_04;
 
-import org.junit.jupiter.params.shadow.com.univocity.parsers.common.input.NoopCharAppender;
-
 public class ListaDupla<T> {
 
 	private NoListaDupla<T> primeiro;
