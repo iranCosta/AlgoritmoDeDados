@@ -7,7 +7,8 @@ public class ListaEncadeada<T> {
 	// a
 	public ListaEncadeada() {
 		primeiro = null;
-		// primeiro.setInfo(null); --> Perguntar qual a diferença entre esse e o de cima
+		// primeiro.setInfo(null); --> Perguntar qual a diferença entre esse e o de
+		// cima
 	}
 
 	// b
@@ -38,7 +39,7 @@ public class ListaEncadeada<T> {
 		while (p != null) {
 			if (p.getInfo().equals(info)) {
 				return p;
-				
+
 			}
 			p = p.getProximo();
 		}
@@ -47,21 +48,18 @@ public class ListaEncadeada<T> {
 	}
 
 	// f
-	public void retirar(T info) {
-		NoLista<T> anterior = null;
+	public void retirar(T valor) {
 		NoLista<T> p = primeiro;
+		NoLista<T> anterior = null;
 
-		while ((p != null) && (!p.getInfo().equals(info))) {
-			anterior = p;
-			p.setProximo(p);
+		if (p.equals(primeiro)) {
+			p.setInfo(valor);
+		} else {
+			anterior.setProximo(anterior);
 		}
 
-		if (p != null) {
-			if (p != primeiro) {
-				this.primeiro = p.getProximo();
-			} else {
-				anterior.setProximo(p.getProximo());
-			}
+		if (p.getProximo() != null) {
+			anterior = p;
 		}
 	}
 
@@ -90,25 +88,39 @@ public class ListaEncadeada<T> {
 		return p;
 	}
 
-	/* 
-	public NoLista<T> obterNo(int idx) {
-		if(idx < 0) {
-			throw new IndexOutOfBounds();
+	/*
+	 * public NoLista<T> obterNo(int idx) { if(idx < 0) { throw new
+	 * IndexOutOfBounds(); }
+	 * 
+	 * NoLista<T> p = getPrimeiro(); while(p!= null) && (idx > 0) { idx--; p=
+	 * p.getProximo(); }
+	 * 
+	 * if(p == null) { throw new IndexOutOfBoundsException(); } return p; }
+	 * 
+	 */
+
+	public void retirarTodos(T valor) {
+		NoLista<T> p = primeiro;
+		NoLista<T> anterior = null;
+
+		while ((p != null) && !p.getInfo().equals(valor)) {
+			anterior = p;
+			p.setProximo(p);
 		}
 
-		NoLista<T> p = getPrimeiro();
-		while(p!= null) && (idx > 0) {
-			idx--;
-			p= p.getProximo();
+		if (p != null) {
+			if (p != primeiro) {
+				this.primeiro = p.getProximo();
+			} else {
+				anterior.setProximo(p.getProximo());
+			}
+		} else {
+			anterior = p;
 		}
 
-		if(p == null) {
-			throw new IndexOutOfBoundsException();
-		}
-		return p;
+		p = p.getProximo();
+
 	}
-	 
-	*/
 
 	// i
 	public String toString() {
@@ -130,12 +142,14 @@ public class ListaEncadeada<T> {
 	public static void main(String[] args) {
 		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
 
-		lista.estaVazia();
+		lista.inserir(20);
+		lista.inserir(15);
+		lista.inserir(20);
+		lista.inserir(50);
 
-		lista.inserir(5);
-		lista.estaVazia();
+		lista.retirarTodos(20);
 
-		lista.toString();
+		System.out.println(lista.toString());
 
 	}
 

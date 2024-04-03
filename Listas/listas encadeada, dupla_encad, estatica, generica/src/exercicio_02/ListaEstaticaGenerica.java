@@ -46,19 +46,6 @@ public class ListaEstaticaGenerica<T> {
 		return -1;
 	}
 
-	public void retirar(T valor) {
-		int pos = buscar(valor);
-
-		if (pos > -1) {
-			for (int i = pos; i < tamanho; i++) {
-				info[i - 1] = info[i];
-			}
-
-			tamanho--;
-			info[tamanho] = null;
-		}
-	}
-
 	public void liberar() {
 		info = new Object[10];
 		tamanho = 0;
@@ -112,6 +99,29 @@ public class ListaEstaticaGenerica<T> {
 		}
 	}
 
+	public void retirar(T valor) {
+		int pos = buscar(valor);
+
+		if (pos > -1) {
+			for (int i = pos; i < tamanho; i++) {
+				info[i - 1] = info[i];
+			}
+
+			tamanho--;
+			info[tamanho] = null;
+		}
+	}
+
+	public void retirarElementos(int inicio, int fim) {
+		for (int i = 0; i < info.length; i++) {
+
+			info[i - fim] = info[i];
+			info[i - inicio] = info[i];
+			tamanho--;
+			info[tamanho] = null;
+		}
+	}
+
 	/*
 	 * public void inverter() { for (int i = 0; i < tamanho / 2; i++) { // Troca os
 	 * elementos nas posições i e tamanho - 1 - i Object temp = info[i]; info[i] =
@@ -130,12 +140,8 @@ public class ListaEstaticaGenerica<T> {
 		lista.inserir(4);
 		lista.inserir(5);
 
-		System.out.println("Lista antes da inversão:");
-		lista.exibir();
+		lista.retirarElementos(2, 4);
 
-		lista.inverter();
-
-		System.out.println("Lista após a inversão:");
-		lista.exibir();
+		System.out.println(lista.toString());
 	}
 }

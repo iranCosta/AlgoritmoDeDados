@@ -1,5 +1,7 @@
 package Exercicio_01;
 
+import exercicio_03.NoLista;
+
 public class ListaEstatica {
 
 	private Object info[];
@@ -69,6 +71,7 @@ public class ListaEstatica {
 		}
 		return info[pos];
 	}
+	 
 
 	public boolean estaVazia() {
 		return tamanho == 0;
