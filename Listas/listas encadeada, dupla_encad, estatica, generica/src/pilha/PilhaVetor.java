@@ -1,7 +1,5 @@
 package pilha;
 
-import exercicio_03.NoLista;
-
 public class PilhaVetor<T> implements Pilha<T> {
 
 	private T info[];
@@ -15,50 +13,71 @@ public class PilhaVetor<T> implements Pilha<T> {
 	}
 
 	@Override
-	public void push(int v) {
-		if (limite == tamanho) {
+	public void push(T valor) {
+		if (tamanho == limite) {
 			throw new PilhaCheiaException("Capacidade esgotada da pilha");
 		}
 
+		info[tamanho] = valor;
+		tamanho++;
 	}
 
 	@Override
-	public int pop() {
-		int valor;
+	public T pop() {
+		T valor;
 		valor = peek();
 
-		tamanho++;
+		tamanho--;
 		return valor;
 	}
 
 	@Override
-	public int peek() {
+	public T peek() {
 		if (estaVazia()) {
-			throw new PilhaVaziaException("Pilha esta vazia");
+			throw new PilhaVaziaException("Pilha está vazia");
 		}
-		return 0;
+		return info[tamanho - 1];
 	}
 
 	@Override
 	public boolean estaVazia() {
-		return estaVazia() == true ? true : false;
+		return tamanho == 0;
 	}
 
 	@Override
 	public void liberar() {
-
-		while (estaVazia() != true) {
-			pop();
+//		while (estaVazia() != true) {
+//			pop();
+//		} perguntar se esta errado!!!
+		for (int i = 0; i < getTamanho(); i++) {
+			info[i] = null;
 		}
-
 	}
 
-//	public String toString() {
-//
-//	}
+	public String toString() {
+		String str = "";
+
+		for (int i = 0; i < getTamanho(); i++) {
+			if (i != 0) {
+				str += ", ";
+
+			}
+			str += getInfo()[i].toString();
+		}
+
+		return str;
+	}
 
 	public void concatenar(PilhaVetor<T> p) {
 
+		if (p.getTamanho() + getTamanho() > limite) {
+			throw new RuntimeException();
+		}
+
+		for (int i = 0; i < p.getTamanho(); i++) {
+			getInfo()[tamanho] = p.getInfo()[i];
+			setTamanho(tamanho + 1);
+		}
 	}
 
 	public T[] getInfo() {
@@ -83,21 +102,6 @@ public class PilhaVetor<T> implements Pilha<T> {
 
 	public void setTamanho(int tamanho) {
 		this.tamanho = tamanho;
-	}
-
-	public static void main(String[] args) {
-
-		PilhaVetor<Integer> pilha = new PilhaVetor<Integer>(5);
-
-		pilha.push(5);
-		pilha.push(10);
-		pilha.push(15);
-		pilha.push(20);
-		pilha.push(25);
-
-		//pilha.liberar();
-
-		pilha.peek();
 	}
 
 }

@@ -2,11 +2,11 @@ package pilha;
 
 public interface Pilha<T> {
 
-	void push(int v);
+	void push(T valor);
 
-	int pop();
+	T pop();
 
-	int peek();
+	T peek();
 
 	boolean estaVazia();
 
