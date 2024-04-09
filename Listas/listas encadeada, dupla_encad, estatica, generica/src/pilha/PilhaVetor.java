@@ -15,7 +15,7 @@ public class PilhaVetor<T> implements Pilha<T> {
 	@Override
 	public void push(T valor) {
 		if (tamanho == limite) {
-			throw new PilhaCheiaException("Capacidade esgotada da pilha");
+			throw new PilhaCheiaException();
 		}
 
 		info[tamanho] = valor;
@@ -23,18 +23,9 @@ public class PilhaVetor<T> implements Pilha<T> {
 	}
 
 	@Override
-	public T pop() {
-		T valor;
-		valor = peek();
-
-		tamanho--;
-		return valor;
-	}
-
-	@Override
 	public T peek() {
 		if (estaVazia()) {
-			throw new PilhaVaziaException("Pilha estÃ¡ vazia");
+			throw new PilhaVaziaException();
 		}
 		return info[tamanho - 1];
 	}
@@ -45,12 +36,24 @@ public class PilhaVetor<T> implements Pilha<T> {
 	}
 
 	@Override
+	public T pop() {
+		T valor;
+		valor = peek();
+
+		info[tamanho - 1] = null;
+
+		tamanho--;
+		return valor;
+	}
+
+	@Override
 	public void liberar() {
-//		while (estaVazia() != true) {
-//			pop();
-//		} perguntar se esta errado!!!
-		for (int i = 0; i < getTamanho(); i++) {
-			info[i] = null;
+		try {
+			while (true) {
+				pop();
+			}
+		} catch (PilhaVaziaException e) {
+
 		}
 	}
 
@@ -71,12 +74,11 @@ public class PilhaVetor<T> implements Pilha<T> {
 	public void concatenar(PilhaVetor<T> p) {
 
 		if (p.getTamanho() + getTamanho() > limite) {
-			throw new RuntimeException();
+			throw new RuntimeException("Não há espaço pra empilhar todos os dados");
 		}
 
 		for (int i = 0; i < p.getTamanho(); i++) {
-			getInfo()[tamanho] = p.getInfo()[i];
-			setTamanho(tamanho + 1);
+			this.push((T) p.info[i]);
 		}
 	}
 
