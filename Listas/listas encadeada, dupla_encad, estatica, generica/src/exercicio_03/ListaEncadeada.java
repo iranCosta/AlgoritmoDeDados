@@ -3,12 +3,11 @@ package exercicio_03;
 public class ListaEncadeada<T> {
 
 	private NoLista<T> primeiro;
+	private NoLista<T> ultimo;
 
 	// a
 	public ListaEncadeada() {
 		primeiro = null;
-		// primeiro.setInfo(null); --> Perguntar qual a diferença entre esse e o de
-		// cima
 	}
 
 	// b
