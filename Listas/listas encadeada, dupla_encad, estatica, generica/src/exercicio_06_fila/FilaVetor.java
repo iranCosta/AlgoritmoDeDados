@@ -20,8 +20,7 @@ public class FilaVetor<T> implements Fila<T> {
 			throw new FilaCheiaException();
 		}
 
-		int posInserir;
-		posInserir = (inicio + tamanho) % limite;
+		int posInserir = (getInicio() + getTamanho()) % getLimite();
 		info[posInserir] = valor;
 		tamanho++;
 	}
@@ -56,16 +55,12 @@ public class FilaVetor<T> implements Fila<T> {
 			throw new FilaVaziaException();
 		}
 
-		T valor = peek();
+		T valor = (T) info[inicio];
 
 		inicio = (inicio + 1) % limite;
 		tamanho--;
 
 		return valor;
-
-	}
-
-	public void criarFilaConcatenada(FilaVetor<T> p2) {
 
 	}
 
@@ -81,6 +76,10 @@ public class FilaVetor<T> implements Fila<T> {
 		}
 
 		return str;
+	}
+
+	public void criarFilaConcatenada(FilaVetor<T> p2) {
+
 	}
 
 	public Object[] getInfo() {
@@ -113,14 +112,6 @@ public class FilaVetor<T> implements Fila<T> {
 
 	public void setInicio(int inicio) {
 		this.inicio = inicio;
-	}
-
-	public static void main(String[] args) {
-		FilaVetor<Integer> fila = new FilaVetor<Integer>();
-
-		fila.estaVazia();
-		fila.getInfo();
-
 	}
 
 }
