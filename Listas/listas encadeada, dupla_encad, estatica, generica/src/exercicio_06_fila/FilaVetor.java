@@ -41,7 +41,7 @@ public class FilaVetor<T> implements Fila<T> {
 	@Override
 	public void liberar() {
 		try {
-			while (estaVazia() != true) {
+			while (true) {
 				retirar();
 			}
 		} catch (FilaVaziaException e) {
@@ -55,7 +55,8 @@ public class FilaVetor<T> implements Fila<T> {
 			throw new FilaVaziaException();
 		}
 
-		T valor = (T) info[inicio];
+		T valor = peek();
+		info[inicio] = null;
 
 		inicio = (inicio + 1) % limite;
 		tamanho--;
@@ -68,17 +69,30 @@ public class FilaVetor<T> implements Fila<T> {
 		String str = "";
 
 		for (int i = 0; i < tamanho; i++) {
-			if (i != 0) {
+			if (i > 0) {
 				str += ", ";
 
 			}
-			str += info[i].toString();
+			str = str + info[i];
+			i = (i + 1) % limite;
 		}
-
 		return str;
 	}
 
-	public void criarFilaConcatenada(FilaVetor<T> p2) {
+	public void criarFilaConcatenada(FilaVetor<T> f2) {
+		FilaVetor<T> f3 = new FilaVetor<T>(this.limite + f2.limite);
+
+		int indice = this.inicio;
+		for (int i = 0; i < this.tamanho; i++) {
+			f3.inserir((T) this.info[indice]);
+			indice = (indice + 1) % this.limite;
+		}
+
+		indice = f2.inicio;
+		for (int i = 0; i < f2.tamanho; i++) {
+			f3.inserir((T) f2.info[indice]);
+			indice = (indice + 1) % f2.limite;
+		}
 
 	}
 

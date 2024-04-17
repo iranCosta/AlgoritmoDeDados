@@ -6,7 +6,9 @@ public interface Fila<T> {
 
 	public boolean estaVazia();
 
-	public T peek();
+	T peek();
+	
+	T retirar();
 
 	public void liberar();
 

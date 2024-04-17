@@ -1,5 +1,7 @@
 package exercicio_03;
 
+import exercicio_07_fila.FilaLista;
+
 public class ListaEncadeada<T> {
 
 	private NoLista<T> primeiro;
@@ -48,8 +50,8 @@ public class ListaEncadeada<T> {
 
 	// f
 	public void retirar(T valor) {
-		NoLista<T> p = primeiro;
-		NoLista<T> anterior = null;
+		FilaLista<T> p = primeiro;
+		FilaLista<T> anterior = null;
 
 		if (p.equals(primeiro)) {
 			p.setInfo(valor);
@@ -59,6 +61,10 @@ public class ListaEncadeada<T> {
 
 		if (p.getProximo() != null) {
 			anterior = p;
+		}
+
+		if (p == ultimo) {
+			ultimo = anterior;
 		}
 	}
 
@@ -138,18 +144,17 @@ public class ListaEncadeada<T> {
 		return result;
 	}
 
-	public static void main(String[] args) {
-		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
+	public void inserirNoFinal(T valor) {
+		NoLista<T> novo = new NoLista();
+		novo.setInfo(valor);
+		novo.setProximo(null);
 
-		lista.inserir(20);
-		lista.inserir(15);
-		lista.inserir(20);
-		lista.inserir(50);
-
-		lista.retirarTodos(20);
-
-		System.out.println(lista.toString());
-
+		if (estaVazia()) {
+			primeiro = novo;
+		} else {
+			ultimo.setProximo(novo);
+		}
+		ultimo = novo;
 	}
 
 }

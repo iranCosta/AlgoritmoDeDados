@@ -10,6 +10,7 @@ public class ListaEncadeada<T> {
 	// a
 	public ListaEncadeada() {
 		primeiro = null;
+		ultimo = null;
 	}
 
 	// b
@@ -22,6 +23,12 @@ public class ListaEncadeada<T> {
 		novo.setInfo(info);
 		novo.setProximo(primeiro);
 		primeiro = novo;
+
+		if (estaVazia()) {
+			ultimo = novo;
+		}
+
+		this.primeiro = novo;
 	}
 
 	// d
@@ -62,6 +69,10 @@ public class ListaEncadeada<T> {
 		if (p.getProximo() != null) {
 			anterior = p;
 		}
+
+		if (p == ultimo) {
+			ultimo = anterior;
+		}
 	}
 
 	// g
@@ -88,17 +99,6 @@ public class ListaEncadeada<T> {
 		}
 		return p;
 	}
-
-	/*
-	 * public NoLista<T> obterNo(int idx) { if(idx < 0) { throw new
-	 * IndexOutOfBounds(); }
-	 * 
-	 * NoLista<T> p = getPrimeiro(); while(p!= null) && (idx > 0) { idx--; p=
-	 * p.getProximo(); }
-	 * 
-	 * if(p == null) { throw new IndexOutOfBoundsException(); } return p; }
-	 * 
-	 */
 
 	public void retirarTodos(T valor) {
 		FilaLista<T> p = primeiro;
@@ -138,19 +138,6 @@ public class ListaEncadeada<T> {
 
 		result += "]";
 		return result;
-	}
-
-	public void inserirNoFinal(T valor) {
-		FilaLista<T> novo = new FilaLista();
-		novo.setInfo(valor);
-		novo.setProximo(null);
-
-		if (estaVazia()) {
-			primeiro = novo;
-		} else {
-			ultimo.setProximo(novo);
-		}
-		ultimo = novo;
 	}
 
 }
