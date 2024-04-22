@@ -80,7 +80,7 @@ public class FilaVetor<T> implements Fila<T> {
 	}
 
 	public void criarFilaConcatenada(FilaVetor<T> f2) {
-		FilaVetor<T> f3 = new FilaVetor<T>(this.limite + f2.limite);
+		FilaVetor<T> f3 = new FilaVetor<T>();
 
 		int indice = this.inicio;
 		for (int i = 0; i < this.tamanho; i++) {
