@@ -7,7 +7,6 @@ public class NoArvoreBinaria<T> {
 	private NoArvoreBinaria<T> direita;
 
 	public NoArvoreBinaria(T info) {
-		super();
 		this.info = info;
 		this.esquerda = null;
 		this.direita = null;
