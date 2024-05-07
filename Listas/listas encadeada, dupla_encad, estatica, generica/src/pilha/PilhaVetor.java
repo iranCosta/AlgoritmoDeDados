@@ -74,13 +74,41 @@ public class PilhaVetor<T> implements Pilha<T> {
 	public void concatenar(PilhaVetor<T> p) {
 
 		if (p.getTamanho() + getTamanho() > limite) {
-			throw new RuntimeException("Não há espaço pra empilhar todos os dados");
+			throw new RuntimeException("Nï¿½o hï¿½ espaï¿½o pra empilhar todos os dados");
 		}
 
 		for (int i = 0; i < p.getTamanho(); i++) {
 			this.push((T) p.info[i]);
 		}
 	}
+	
+
+/*
+ * Metodo para validar se os parenteses fecharam, mertodo para prova
+ * public class ValidadorParenteses {
+    public static boolean validarParenteses(String expressao) {
+        Pilha<Character> pilha = new Stack<>();
+        for (char c : expressao.toCharArray()) {
+            if (c == '(') {
+                pilha.push(c);
+            } else if (c == ')') {
+                if (pilha.isEmpty()) {
+                    return false;
+                } else {
+                    pilha.pop();
+                }
+            }
+        }
+        return pilha.isEmpty();
+    }
+
+    public static void main(String[] args) {
+        String expressao1 = "(())()";
+        String expressao2 = "(()";
+        System.out.println(validarParenteses(expressao1)); // SaÃ­da: true
+        System.out.println(validarParenteses(expressao2)); // SaÃ­da: false
+    }
+}*/
 
 	public T[] getInfo() {
 		return info;

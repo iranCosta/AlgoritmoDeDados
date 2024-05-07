@@ -30,7 +30,7 @@ public class Arvore<T> {
 		NoArvore<T> p = no.getPrimeiro();
 
 		while (p != null) {
-			s += s + obterRepresentacaoTextual(p);
+			s += obterRepresentacaoTextual(p);
 			p.setProximo(p);
 		}
 		s += ">";
@@ -61,16 +61,23 @@ public class Arvore<T> {
 		}
 	}
 
-//	public int contarNos() {
-//		return contarNos(raiz);
-//	}
+	private int ContarNos(NoArvore<T> no) {
+		int i = 0;
 
-//	private int contarNos(NoArvore<T> no) {
-//		if(no == null) {
-//			return 0;
-//		} else {
-//			return 
-//		}
-//	}
+		NoArvore<T> p = no.getPrimeiro();
 
+		while (p != null) {
+			i += ContarNos(p);
+			p = p.getProximo();
+		}
+
+		return i + 1;
+	}
+
+	public int ContarNos() {
+		if (getRaiz() == null) {
+			return 0;
+		}
+		return ContarNos(getRaiz());
+	}
 }
