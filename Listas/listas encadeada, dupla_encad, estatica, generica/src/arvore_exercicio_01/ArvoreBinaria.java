@@ -59,4 +59,12 @@ public class ArvoreBinaria<T> {
 		}
 	}
 
+	public int contarNosInternos(NoArvoreBinaria<T> sa) {
+		if (sa.getEsquerda() == null && sa.getDireita() == null) {
+			return 0;
+		} else {
+			return 1 + contarNosInternos(sa);
+		}
+	}
+
 }

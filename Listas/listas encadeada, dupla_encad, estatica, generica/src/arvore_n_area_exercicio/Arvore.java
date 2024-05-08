@@ -31,7 +31,7 @@ public class Arvore<T> {
 
 		while (p != null) {
 			s += obterRepresentacaoTextual(p);
-			p.setProximo(p);
+			p = p.getProximo();
 		}
 		s += ">";
 		return s;

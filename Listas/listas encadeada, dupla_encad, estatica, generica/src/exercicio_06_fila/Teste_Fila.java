@@ -1,5 +1,6 @@
 package exercicio_06_fila;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -28,14 +29,15 @@ class Teste_Fila {
 		fila.FilaVetor(10);
 
 		fila.inserir(10);
+		fila.inserir(15);
 		fila.inserir(20);
-		fila.inserir(30);
 
+		fila.encolher();
+		System.out.println("fila: " + fila.toString());
+		System.out.println("limite: " + fila.getLimite());
+		System.out.println("size: " + fila.getTamanho());
 		fila.retirar();
-//		fila.retirar();
-
-		System.out.println(fila.toString());
-		// assertTrue(fila.estaVazia());
+		System.out.println("inicio: " + fila.getInicio());
 	}
 
 }

@@ -69,9 +69,12 @@ public class FilaVetor<T> implements Fila<T> {
 		String str = "";
 
 		for (int i = 0; i < tamanho; i++) {
+			if (str == null) {
+				return "nada";
+			}
+
 			if (i > 0) {
 				str += ", ";
-
 			}
 			str = str + info[i];
 			i = (i + 1) % limite;
@@ -94,6 +97,12 @@ public class FilaVetor<T> implements Fila<T> {
 			indice = (indice + 1) % f2.limite;
 		}
 
+	}
+
+	public void encolher() {
+		if (tamanho != limite) {
+			setLimite(tamanho);
+		}
 	}
 
 	public Object[] getInfo() {
