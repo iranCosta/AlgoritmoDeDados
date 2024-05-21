@@ -24,14 +24,12 @@ public class NoMapa<T> {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+
+		if (obj == null || getClass() != obj.getClass())
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		NoMapa<T> other = (NoMapa) obj;
-		if (chave != other.chave)
-			return false;
-		return true;
+
+		NoMapa<?> noMapa = (NoMapa<?>) obj;
+		return chave == noMapa.chave;
 	}
 
 }

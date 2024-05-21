@@ -12,9 +12,7 @@ public class MapaDispersao<T> {
 	}
 
 	private int calcularHash(int chave) {
-		int tamanho;
-		tamanho = info.length;
-		return chave % tamanho;
+		return chave % info.length;
 	}
 
 	public void inserir(int chave, T dado) {
@@ -32,6 +30,13 @@ public class MapaDispersao<T> {
 
 	public void remover(int chave) {
 
+		int indice = calcularHash(chave);
+
+		if (info[indice] != null) {
+			NoMapa<T> no = new NoMapa<T>();
+			no.setChave(chave);
+			info[indice].retirar(no);
+		}
 	}
 
 	public T buscar(int chave) {
@@ -48,5 +53,4 @@ public class MapaDispersao<T> {
 		}
 		return null;
 	}
-
 }

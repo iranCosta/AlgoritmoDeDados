@@ -49,24 +49,31 @@ public class ListaEncadeada<T> {
 	}
 
 	// f
-//	public void retirar(T valor) {
-//		FilaLista<T> p = primeiro;
-//		FilaLista<T> anterior = null;
-//
-//		if (p.equals(primeiro)) {
-//			p.setInfo(valor);
-//		} else {
-//			anterior.setProximo(anterior);
-//		}
-//
-//		if (p.getProximo() != null) {
-//			anterior = p;
-//		}
-//
-//		if (p == ultimo) {
-//			ultimo = anterior;
-//		}
-//	}
+	public void retirar(T info) {
+		NoLista<T> anterior = null;
+		NoLista<T> atual = primeiro;
+
+		while ((atual != null) && (!atual.getInfo().equals(info))) {
+			anterior = atual;
+			atual = atual.getProximo();
+		}
+
+		if (atual != null) {
+			if (atual == primeiro)
+				primeiro = primeiro.getProximo();
+			else
+				anterior.setProximo(atual.getProximo());
+		}
+		if (atual != null) {
+			if (anterior == null)
+				this.primeiro = atual.getProximo();
+			else
+				anterior.setProximo(atual.getProximo());
+			if (atual == ultimo) {
+				ultimo = anterior;
+			}
+		}
+	}
 
 	// g
 	public int obterComprimento() {
